@@ -1,0 +1,100 @@
+body{
+    background-image: url('../pics/wallpaper.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar{
+    background-color: white;
+    margin-top: -20px;
+}
+
+@media only screen and (min-width: 100px){
+    .page-footer{
+        color: whitesmoke;
+        margin-top: 50%;
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .page-footer{
+        color: whitesmoke;
+        margin-top: 50%;
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .page-footer{
+        text-align: center;
+        margin-top: 50%;
+        color: whitesmoke;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .page-footer{
+        bottom: 0;
+        left: 0;
+        color: black;
+        right: 0;
+        position: absolute;
+        background-color: rgba(255, 255, 255, 0.877);
+    }
+}
+
+.form{
+    background-color: rgba(255, 255, 255, 0.774);
+    min-height: 260px;
+    max-height: 300px;
+    border-radius: 3px;
+}
+
+.carriers{
+    background-color: rgba(255, 255, 255, 0.849);
+    height: 600px;
+    border-radius: 3px;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    height: 700px;
+}
+
+input[type="file"] {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    background-color: rgb(101, 113, 117);
+    color: white;
+    border-radius: 3px;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting:before,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_asc:before,
+table.dataTable thead .sorting_asc_disabled:after,
+table.dataTable thead .sorting_asc_disabled:before,
+table.dataTable thead .sorting_desc:after,
+table.dataTable thead .sorting_desc:before,
+table.dataTable thead .sorting_desc_disabled:after,
+table.dataTable thead .sorting_desc_disabled:before {
+    bottom: .5em;
+}
+
+.table{
+    margin-top:5px;
+}
+
+messages{
+    text-decoration: none;
+}
+
+.info{
+    transition: 0.6s ease-in;
+}

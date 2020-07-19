@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' type='text/css' href='../static/css/dashboard.css'>  
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="http://cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css"></style>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="/dashboard"><img src="../static/pics/keltrans_logo.jpg" alt="KelTrans Logo" style="height: 100px;"></a>
+        <div>
+            <a href="/logout"><button class="btn btn-outline-danger btn-sm">User Logout</button></a>
+            <a href="/admin"><button class="btn btn-outline-info btn-sm">Admin Login</button></a>
+        </div>
+    </div>
+
+    <div class=" col-sm-12 row">
+        
+        <div class="col-md-3 offset-1 form mt-5 formdiv">
+            <form action="/addNew" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group mt-4">
+                    <input type="number" name='num' class="form-control" placeholder="MC Number">
+                </div>
+                <div class="form-group mt-2">
+                    <input type="text" name='name' class="form-control" placeholder="Carrier Name">
+                </div>
+                <div class="form-group mt-2">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fa fa-cloud-upload"></i> Upload Contract PDF
+                    </label>
+                    <input id="file-upload" type="file" name='packet' />
+                </div>
+                <button class="col-md-12 btn btn-primary">Add Carrier</button>
+            </form>
+            <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %} style="color: red;">{{ message }}</li>    
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col-md-6 offset-1 col-sm-12 mt-5 carriers">
+
+            <table id='carrier_table' class="table table-striped table-bordered table-md" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                    <th class="th-sm">#
+                    </th>
+                    <th class="th-sm">MC Number
+                    </th>
+                    <th class="th-sm">Name
+                    </th>
+                    <th class="th-sm">Carrier Contract
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for carrier in carriers %}
+                    <tr class="info">
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ carrier.mc_num }}</td>
+                        <td><a href="/detail/{{carrier.id}}">{{ carrier.name }}</a></td>
+                        <td><a href="{{ carrier.packet.url }}" class="btn btn-secondary btn-sm">View Carrier Contract</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <footer class="page-footer">
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="http://innovateyoursupplychain.com/" target="_blank"> KelTrans Freight Solutions</a>
+        </div>
+    </footer>
+    <script>
+        $(document).ready(function () {
+            $('#carrier_table').DataTable({
+                "bLengthChange": false,
+                "bInfo": false,
+            });
+            $('.dataTables_length').addClass('bs-select');
+        });
+    </script>
+</body>
+</html>
